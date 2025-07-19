@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AlphaDec Time Demo</title>
+    <style>
+        body {
+            background-color: #282c34;
+            color: #abb2bf;
+            font-family: 'Courier New', Courier, monospace;
+            display: grid;
+            place-content: center;
+            height: 100vh;
+            margin: 0;
+            text-align: center;
+        }
+        .container {
+            padding: 2rem 3rem;
+            background-color: #21252b;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+        }
+        h1 {
+            color: #61afef;
+            margin-top: 0;
+            border-bottom: 1px solid #3e4451;
+            padding-bottom: 0.5rem;
+        }
+        p {
+            font-size: 1.25rem;
+            margin: 1.5rem 0;
+            line-height: 1.5;
+        }
+        .label {
+            color: #98c379;
+            font-weight: bold;
+        }
+        #alphadec-time {
+            font-size: 1.5rem;
+            color: #e5c07b;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>AlphaDec Time</h1>
+        <p><span class="label">Your Local Time:</span> <br><span id="local-time">Loading...</span></p>
+        <p><span class="label">UTC Time:</span> <br><span id="utc-time">Loading...</span></p>
+        <p><span class="label">AlphaDec Time:</span> <br><span id="alphadec-time">Loading...</span></p>
+    </div>
+
+    <script>
+        // --- AlphaDec Logic (Extracted from your provided code) ---
+        const clock = {
+          alphadec: {
+            _SCALER: 1_000_000,
+            _toBase26(n) {
+              if (n < 0 || n > 25) throw new Error("Invalid index for Base26.");
+              return String.fromCharCode(65 + n);
+            },
+            encode(d) {
+              const y = d.getUTCFullYear();
+              const SCALER = this._SCALER;
+              const msSinceYearStart_float = d.getTime() - Date.UTC(y, 0, 1, 0, 0, 0, 0);
+              const totalScaledMsSinceYearStart = Math.floor(msSinceYearStart_float * SCALER);
+              const isLeap = ((y % 4 === 0 && y % 100 !== 0) || y % 400 === 0);
+              const daysInYear = isLeap ? 366 : 365;
+              const yearTotalMs_float = daysInYear * 86_400_000;
+              const yearTotalScaledMs = Math.floor(yearTotalMs_float * SCALER);
+              const periodSizeScaled = Math.floor(yearTotalScaledMs / 26);
+              const arcSizeScaled    = Math.floor(periodSizeScaled / 10);
+              const barSizeScaled    = Math.floor(arcSizeScaled / 26);
+              const beatSizeScaled   = Math.floor(barSizeScaled / 10);
+              let remainingScaledMs = totalScaledMsSinceYearStart;
+              const p_idx = Math.floor(remainingScaledMs / periodSizeScaled);
+              remainingScaledMs -= p_idx * periodSizeScaled;
+              const a_val = Math.floor(remainingScaledMs / arcSizeScaled);
+              remainingScaledMs -= a_val * arcSizeScaled;
+              const b_idx = Math.floor(remainingScaledMs / barSizeScaled);
+              remainingScaledMs -= b_idx * barSizeScaled;
+              const t_val = Math.floor(remainingScaledMs / beatSizeScaled);
+              remainingScaledMs -= t_val * beatSizeScaled;
+              const msOffsetInBeat = Math.floor(remainingScaledMs / SCALER);
+              const periodLetter = this._toBase26(p_idx);
+              const barLetter    = this._toBase26(b_idx);
+              const canonicalMsPart = msOffsetInBeat.toString().padStart(6, "0");
+              const canonical = `${y}_${periodLetter}${a_val}${barLetter}${t_val}_${canonicalMsPart}`;
+              return { canonical };
+            }
+          }
+        };
+
+        // --- Page Update Logic ---
+        document.addEventListener('DOMContentLoaded', () => {
+            const localTimeEl = document.getElementById('local-time');
+            const utcTimeEl = document.getElementById('utc-time');
+            const alphadecTimeEl = document.getElementById('alphadec-time');
+
+            function updateAllTimes() {
+                const now = new Date();
+                localTimeEl.textContent = now.toLocaleString();
+                utcTimeEl.textContent = now.toUTCString();
+                const alphadecData = clock.alphadec.encode(now);
+                alphadecTimeEl.textContent = alphadecData.canonical;
+            }
+
+            updateAllTimes();
+            setInterval(updateAllTimes, 100); // Update 10 times per second for smooth display
+        });
+    </script>
+</body>
+</html>

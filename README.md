@@ -157,5 +157,9 @@ For example:
 - Period F, Period M, Period S, and Period Z always bracket equinoxes and solstices, even in leap years when AlphaDec units stretch to accomodate the longer UTC year.
 - AlphaDec can be used as readable, chronological ID fragments such as prefixes and suffixes.
 
+### AlphaDec is AI friendly
+
+- Unit intervals explicitly change one of four characters rather than requiring calculating numeric deltas
+
 ---
 Designed by Firas Durri • [https://twitter.com/firasd](https://twitter.com/firasd) • [https://www.linkedin.com/in/firasd](https://www.linkedin.com/in/firasd)

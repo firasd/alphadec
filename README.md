@@ -162,5 +162,17 @@ For example:
 
 - Unit intervals explicitly change one of four characters rather than requiring calculating numeric deltas
 
+## Leap Years
+
+AlphaDec units stretch in leap years to accommodate the extra 24 hours. Since the year is always divided into exactly 26 periods regardless of length, each time unit becomes slightly longer in leap years than in common years.
+
+This creates temporal drift between leap and common years that accumulates throughout the year, reaching maximum separation at the midpoint around **Beat M5A0** - approximately 12 hours difference.
+
+For example, July 4th midnight demonstrates how the same calendar moment maps to different AlphaDec coordinates:
+- **2025 (common):** `N1B7` - July 4, 2025 00:00 UTC
+- **2024 (leap):** `N1K9` - July 4, 2024 00:00 UTC  
+
+Notice the first two characters remain the same (`N1`) as both dates fall within the same period and arc, but the bar-beat coordinates diverge significantly (`K9` vs `B7`), reflecting the accumulated temporal drift.
+
 ---
 Designed by Firas Durri • [https://twitter.com/firasd](https://twitter.com/firasd) • [https://www.linkedin.com/in/firasd](https://www.linkedin.com/in/firasd)

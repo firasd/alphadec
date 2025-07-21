@@ -199,5 +199,69 @@ Notice the first two characters remain the same (`N1`) as both dates fall within
 
 - **Quantization Loss**: Round-trip conversion (UTC → AlphaDec → UTC) may drift by a few milliseconds due to misaligned temporal boundaries between the two time systems.
 - **Cross-Year Math**: Arithmetic operations spanning multiple years are not supported or intended.
+
+## 📆 AlphaDec is a Representation, Not a Replacement
+
+AlphaDec is **not** a replacement for ISO 8601, `created_at`, or your existing datetime columns.
+
+It’s a **representation** — a compact, structured, and readable *fingerprint* of UTC time.  
+You still store full datetimes in your database.  
+You still use ISO for APIs, logs, schemas, and interop.
+
+But when you want to **name a file**, **index a memory**, **prefix a row**, or **group logs**, you can reach for:
+
+```
+AlphaDec: 2025_L0V3_001827
+```
+
+Instead of:
+
+```
+ISO 8601: 2025-06-14T23:37:42.814Z
+```
+
+> One is for machines.  
+> One is for humans, filenames, indexes, AI models.
+
+AlphaDec sits *beside* your datetime — not in place of it.
+
+## 🔍 Comparisons
+
+Here’s how AlphaDec compares to other systems:
+
+### 🕒 Swatch Internet Time
+- Divides the day into 1000 “.beats” (`@000` to `@999`), anchored to UTC+1.
+- Intended to be universal, but **doesn't encode the date** — `@000` repeats every day.
+- `@000` in Tokyo might be a different date than in NYC.
+
+✅ Global  
+❌ Ambiguous  
+❌ Not hierarchical  
+❌ Not useful for indexing or filenames
+
+
+### 📡 Maidenhead Locator System
+- Used in ham radio to encode **spatial** positions in a compact grid (e.g., `FN31pr`).
+- Each character increases precision, and prefixes group cleanly.
+
+✅ Hierarchical  
+✅ Prefix-sortable  
+✅ Spatially meaningful  
+
+**AlphaDec is like Maidenhead — but for time.**  
+You can zoom in or out: Year → Period → Arc → Beat → Offset.
+
+
+### 🧱 ISO 8601
+- Canonical format for timestamps (`2025-07-21T13:42:11Z`)
+- Great for storage, transport, and validation.
+
+✅ Precise  
+✅ Interoperable  
+❌ Verbose  
+❌ Not sort-friendly as a string (unless zero-padded)  
+❌ Not great for filenames or embeddings
+
+
 ---
 Designed by Firas Durri • [https://twitter.com/firasd](https://twitter.com/firasd) • [https://www.linkedin.com/in/firasd](https://www.linkedin.com/in/firasd)

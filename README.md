@@ -262,6 +262,19 @@ You can zoom in or out: Year → Period → Arc → Beat → Offset.
 ❌ Not sort-friendly as a string (unless zero-padded)  
 ❌ Not great for filenames or embeddings
 
+### 🆔 Snowflake & ULID
+
+These are modern, sortable database IDs designed to replace UUIDs. They combine a high-precision timestamp with machine IDs (Snowflake) or randomness (ULID).
+
+They are excellent for generating unique, chronological primary keys at scale.
+
+- ✅ Sortable
+- ✅ High-performance
+- ✅ Collision-resistant
+- ❌ Not Glanceable: The timestamp portion is a monolithic integer, not broken down into meaningful components. You can't tell if a ULID is from mid-year.
+- ❌ Not Hierarchical: They don't have a "time tree" structure. You can't query for a ~14-day "Period" using a simple string prefix.
+AlphaDec focuses on human/AI legibility and hierarchical querying, whereas ULID/Snowflake focus on machine-level key generation.
+
 
 ---
 Designed by Firas Durri • [https://twitter.com/firasd](https://twitter.com/firasd) • [https://www.linkedin.com/in/firasd](https://www.linkedin.com/in/firasd)

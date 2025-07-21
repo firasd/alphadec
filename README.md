@@ -156,6 +156,7 @@ For example:
 - AlphaDec timestamps are quite rhythmic: M2L3 ticks over to M2L4, etc.
 - Period F, Period M, Period S, and Period Z always bracket equinoxes and solstices, even in leap years when AlphaDec units stretch to accomodate the longer UTC year.
 - AlphaDec can be used as readable, chronological ID fragments such as prefixes and suffixes.
+- Version labels: Unlike "v1, v10, v2" which breaks alphabetical order, AlphaDec versions (or version prefixes) like ```2025_A1B2``` sort chronologically by default.
 
 ### AlphaDec is AI friendly
 

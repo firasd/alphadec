@@ -10,6 +10,15 @@ Example:
 
 AlphaDec is a shared global timestamp. If an event is scheduled for `N0A0`, every participant worldwide knows what that means — without converting timezones or formats.
 
+<p align="center">
+  <img src="assets/2025_O3T5_alphadec_ai_memory_table.png" alt="AlphaDec LLM Memory Table" width="300">
+</p>
+
+> AlphaDec in action inside an AI chat.  
+> Every ~7.8-minute **beat** (`t`) triggers a new memory summary.  
+> Instead of timestamps, the model sees **structured time tokens** like `N1U0`.  
+> It doesn’t just label time — it **thinks with it**.
+> 
 AlphaDec encodes any UTC timestamp into a readable string that sorts chronologically.
 This simple concept unlocks a host of powerful emergent properties.
 
@@ -160,10 +169,20 @@ For example:
 - AlphaDec can be used as readable, chronological ID fragments such as prefixes and suffixes.
 - Version labels: Unlike "v1, v10, v2" which breaks alphabetical order, AlphaDec versions (or version prefixes) like ```2025_A1B2``` sort chronologically by default.
 
-### AlphaDec is AI friendly
+### AlphaDec is AI-friendly
 
-- Unit intervals explicitly change one of four characters rather than requiring calculating numeric deltas
+- Unit intervals explicitly change one of four characters rather than requiring calculating numeric deltas to realize that time has passed
 
+### AlphaDec is a Database-friendly Time Tree
+
+AlphaDec encodes time hierarchically. Each additional character narrows the scope — from periods to beats to milliseconds — forming a natural prefix tree.
+
+This structure enables:
+- Time-based partitioning (e.g., logs by 2025_M)
+- Fast range queries with simple string matching
+- Index stability (no random insert churn like UUIDs)
+- Optional semantic suffixes without breaking order
+  
 ## Leap Years
 
 AlphaDec units stretch in leap years to accommodate the extra 24 hours. Since the year is always divided into exactly 26 periods regardless of length, each time unit becomes slightly longer in leap years than in common years.

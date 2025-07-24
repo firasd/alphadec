@@ -2,7 +2,7 @@
 
 A timezone-agnostic, readable time format for humans, machines, and AI.
 
-**[Live Demo](https://firasd.github.io/alphadec/)**
+**[Live Clock](https://firasd.github.io/alphadec/)**
 
 Example:
 - **AlphaDec:** `2025_L0V3` (or full canonical: `2025_L0V3_000000`)
@@ -182,12 +182,25 @@ This structure enables:
 - Fast range queries with simple string matching
 - Index stability (no random insert churn like UUIDs)
 - Optional semantic suffixes without breaking order
-  
+
+## AlphaDec as an ID Component
+
+AlphaDec does not prescribe a rigid ID format. Instead, its time-based, sortable nature makes it an excellent component for building meaningful identifiers through composition.
+
+You can use the full canonical string or truncate it to the desired precision. Combine it with prefixes or suffixes like dictionary words, counters, or random characters to suit your specific needs.
+
+This flexibility allows you to create IDs that are both chronologically sortable and contextually rich, without sacrificing readability.
+
+**Examples:**
+* `2025_G0R5_todo.txt` (A truncated AlphaDec timestamp followed by a semantic tag)
+* `2025_R173_154329_01.png` (An AlphaDec timestamp followed by a counter)
+* `sales_Y3.sql` (A category prefix followed by a truncated AlphaDec timestamp)
+
 ## Leap Years
 
 AlphaDec units stretch in leap years to accommodate the extra 24 hours. Since the year is always divided into exactly 26 periods regardless of length, each time unit becomes slightly longer in leap years than in common years.
 
-This creates temporal drift between leap and common years that accumulates throughout the year, reaching maximum separation at the midpoint around **Beat M5A0** - approximately 12 hours difference.
+This creates temporal drift between leap and common years that accumulates throughout the year, reaching maximum separation at the midpoint at **Beat N0A0** &mdash; exactly 12 hours difference.
 
 For example, July 4th midnight demonstrates how the same calendar moment maps to different AlphaDec coordinates:
 - **2025 (common):** `N1B7` - July 4, 2025 00:00 UTC

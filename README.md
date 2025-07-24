@@ -295,7 +295,7 @@ AlphaDec focuses on human/AI legibility and hierarchical querying, whereas ULID/
 
 # AlphaDec Year in UTC ISO time
 
-| AlphaDec | 2024 ISO | 2025 ISO | Drift |
+| AlphaDec | 2024 ISO (Leap Yr) | 2025 ISO | Drift |
 |----------|----------|----------|-------|
 | `A0A0` | `2024-01-01T00:00:00.000Z` | `2025-01-01T00:00:00.000Z` | **0 min** |
 | `B0A0` | `2024-01-15T01:50:46.153Z` | `2025-01-15T00:55:23.076Z` | **+55 min** |

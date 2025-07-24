@@ -27,7 +27,8 @@ This simple concept unlocks a host of powerful emergent properties.
 -   **Lexically Sortable**: Natively time-sortable in any system that can sort strings alphabetically. Perfect for database primary keys.
 -   **Time-Series Friendly**: Truncate the string for efficient time-range queries. `2024_M` finds everything in that ~14-day period.
 -   **Human-Readable & Compact**: Understand a timestamp's approximate place in the year at a glance.
--   **LLM & AI-Native**: Its structured, tokenizable nature makes it a powerful primitive for time-based reasoning, prompt engineering, and log analysis in AI systems.
+-   **LLM & AI-Native**: Its structured, tokenizable nature makes it  powerful primitive for time-based reasoning, prompt engineering, and log analysis in AI systems.
+-   **Collision-free with ISO time**: AlphaDec avoids datetime-like formats, so you never confuse an AlphaDec timestamp for a local time.
 
 ## How It Works
 

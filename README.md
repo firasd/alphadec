@@ -5,8 +5,11 @@ A timezone-agnostic, readable time format for humans, machines, and AI.
 **[Live Clock](https://firasd.github.io/alphadec/)**
 
 Example:
-- **AlphaDec:** `2025_L0V3` (or full canonical: `2025_L0V3_000000`)
-- **UTC:** June 5th, 2025 at 13:45
+- **AlphaDec**: `2025_L0V3`
+  - **UTC**: June 5th, 2025, 1:45PM (Approximately)
+
+- **AlphaDec** (canonical format): `2025_L0V3_000000`
+  - **UTC**: 2025-06-05T13:45:20.236Z
 
 AlphaDec is a shared global timestamp. If an event is scheduled for `N0A0`, every participant worldwide knows what that means — without converting timezones or formats.
 
@@ -219,7 +222,7 @@ Notice the first two characters remain the same (`N1`) as both dates fall within
 - **Quantization Loss**: Round-trip conversion (UTC → AlphaDec → UTC) may drift by a few milliseconds due to misaligned temporal boundaries between the two time systems.
 - **Cross-Year Math**: Arithmetic operations spanning multiple years are not supported or intended.
 
-## 📆 AlphaDec is a Representation, Not a Replacement
+## AlphaDec is a Representation, Not a Replacement
 
 AlphaDec is **not** a replacement for ISO 8601, `created_at`, or your existing datetime columns.
 

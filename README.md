@@ -201,6 +201,21 @@ This flexibility allows you to create IDs that are both chronologically sortable
 * `2025_R173_154329_01.png` (An AlphaDec timestamp followed by a counter)
 * `sales_Y3.sql` (A category prefix followed by a truncated AlphaDec timestamp)
 
+## Astronomical Alignment
+
+Although AlphaDec is a pure mathematical subdivision of the year, the Period unit exhibits alignment with the Earth's orbit.
+
+
+| Period | Event                 | Description                                                                                                                                                         |
+| ------ | --------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| A      | Perihelion        | Earth's closest approach to the Sun (Early January)                                |
+| F      | March Equinox     | The Sun crosses the celestial equator northward; marks the start of spring in the Northern Hemisphere and autumn in the Southern Hemisphere |
+| M      | June Solstice     | The Sun reaches its northernmost point; summer begins in the Northern Hemisphere, winter in the Southern Hemisphere         |
+| N      | Aphelion          | Earth's farthest distance from the Sun (Early July)                     |
+| S      | September Equinox | The Sun crosses the celestial equator southward; marks autumn in the Northern Hemisphere and spring in the Southern Hemisphere              |
+| Z      | December Solstice | The Sun reaches its southernmost point; winter starts in the Northern Hemisphere, summer in the Southern Hemisphere                         |
+
+
 ## Leap Years
 
 AlphaDec units stretch in leap years to accommodate the extra 24 hours. Since the year is always divided into exactly 26 periods regardless of length, each time unit becomes slightly longer in leap years than in common years.

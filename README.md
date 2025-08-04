@@ -209,11 +209,11 @@ Although AlphaDec is a pure mathematical subdivision of the year, the Period uni
 | Period | Event                 | Description                                                                                                                                                         |
 | ------ | --------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | A      | Perihelion        | Earth's closest approach to the Sun (Early January)                                |
-| F      | March Equinox     | The Sun crosses the celestial equator northward; marks the start of spring in the Northern Hemisphere and autumn in the Southern Hemisphere |
-| M      | June Solstice     | The Sun reaches its northernmost point; summer begins in the Northern Hemisphere, winter in the Southern Hemisphere         |
+| F      | March Equinox     | Spring in the Northern Hemisphere and autumn in the Southern Hemisphere |
+| M      | June Solstice     | Summer in the Northern Hemisphere, winter in the Southern Hemisphere         |
 | N      | Aphelion          | Earth's farthest distance from the Sun (Early July)                     |
-| S      | September Equinox | The Sun crosses the celestial equator southward; marks autumn in the Northern Hemisphere and spring in the Southern Hemisphere              |
-| Z      | December Solstice | The Sun reaches its southernmost point; winter starts in the Northern Hemisphere, summer in the Southern Hemisphere                         |
+| S      | September Equinox | Autumn in the Northern Hemisphere and spring in the Southern Hemisphere              |
+| Z      | December Solstice | Winter in the Northern Hemisphere, summer in the Southern Hemisphere                         |
 
 
 ## Leap Years
@@ -311,6 +311,37 @@ They are excellent for generating unique, chronological primary keys at scale.
 - ❌ Not Glanceable: The timestamp portion is a monolithic integer, not broken down into meaningful components. You can't tell if a ULID is from mid-year.
 - ❌ Not Hierarchical: They don't have a "time tree" structure. You can't query for a ~14-day "Period" using a simple string prefix.
 AlphaDec focuses on human/AI legibility and hierarchical querying, whereas ULID/Snowflake focus on machine-level key generation.
+
+## Philosophy of Alphadec
+
+### Origins
+
+Alphadec originated as a way to synchronize events across timezones. Splitting the year into A-Z creates periods with gradations, and further heirarchical division is quite effective in creating smaller 'addresses' in time.
+
+Numeric characters were interwoven to enable verbal chunking and to avoid spelling words.
+
+Any other characteristics of Alphadec were not designed; they emerged from this arithmetic and associated semantics.
+
+### Domain suitability 
+
+Alphadec is well-applicable to time because of the nature of an 'Year': 
+  - **Cyclical**: The ends of the scale overlap. When 2024 is 100% done we're back to 0% done in 2025
+  - **Relational**: Multiple reference points are discussed at the same time, e.g. 'the movie is coming out three periods from now'
+
+Interestingly, the Maidenhead Locator System is quite similar to Alphadec and has both properties: geocodes are cyclical and relational.
+
+Compass bearings have the same properties&mdash;and indeed, Alphadec functions as an approximate compass for Earth's orbit around the sun.
+
+- If you visualize Alphadec as a radial clock, A0A0 sits at 0 degrees in the circle, and N0A0 is at 180 degrees. Period A contains the moment when Earth is closest to the Sun (perihelion), while Period N marks the time when Earth is furthest (aphelion).
+
+We can contrast these properties by using **altitude as a foil**.
+
+Why would altitude likely not benefit from an Alphadec-like quantization?
+
+Because altitude is:
+
+- Linear, not cyclical. There is a fixed zero and no "wrap-around."
+- Absolute, not relational. When you are climbing from 5,000 ft to 10,000 ft, the starting point becomes irrelevant. The focus is on the current, absolute state.
 
 # AlphaDec Year in UTC ISO time
 

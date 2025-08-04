@@ -334,14 +334,9 @@ Compass bearings have the same properties&mdash;and indeed, Alphadec functions a
 
 - If you visualize Alphadec as a radial clock, A0A0 sits at 0 degrees in the circle, and N0A0 is at 180 degrees. Period A contains the moment when Earth is closest to the Sun (perihelion), while Period N marks the time when Earth is furthest (aphelion).
 
-We can contrast these properties by using **altitude as a foil**.
+We can contrast these properties by using **altitude as a foil**. Why would altitude not benefit from an Alphadec-like quantization? Because altitude is linear: there is a fixed zero and no "wrap-around." Additionally, altitude is absolute: when you are climbing from 5,000 ft to 10,000 ft, the starting point becomes irrelevant.
 
-Why would altitude likely not benefit from an Alphadec-like quantization?
-
-Because altitude is:
-
-- Linear, not cyclical. There is a fixed zero and no "wrap-around."
-- Absolute, not relational. When you are climbing from 5,000 ft to 10,000 ft, the starting point becomes irrelevant. The focus is on the current, absolute state.
+A color wheel is another helpful contrast: although it is cyclical, points on the wheel are usually discussed independently. Referring to colors in a navigational or hierarchical manner is uncommon.
 
 # AlphaDec Year in UTC ISO time
 

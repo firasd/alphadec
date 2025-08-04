@@ -4,14 +4,18 @@ A timezone-agnostic, readable time format for humans, machines, and AI.
 
 **[Live Clock](https://firasd.github.io/alphadec/)**
 
+AlphaDec is a shared global timestamp. If an event is scheduled for `N0A0`, every participant worldwide knows what that means — without converting timezones or formats.
+
 Example:
 - **AlphaDec**: `2025_L0V3`
   - **UTC**: June 5th, 2025, 1:45PM (Approximately)
 
 - **AlphaDec** (canonical format): `2025_L0V3_000000`
   - **UTC**: 2025-06-05T13:45:20.236Z
-
-AlphaDec is a shared global timestamp. If an event is scheduled for `N0A0`, every participant worldwide knows what that means — without converting timezones or formats.
+ 
+<!-- snapshot:start -->
+Placeholder text (will be replaced)
+<!-- snapshot:end -->
 
 <p align="center">
   <img src="assets/2025_O3T5_alphadec_ai_memory_table.png" alt="AlphaDec LLM Memory Table" width="300">

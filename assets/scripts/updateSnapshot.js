@@ -8,14 +8,14 @@ const clock = {
   alphadec: {
     _SCALER_N: 1_000_000n, // Use 'n' to denote a BigInt
 
-    _toBase26(n: number): string {
+    _toBase26(n) {
       if (n < 0 || n > 25) throw new Error("Invalid index for Base26 single char conversion.");
       return String.fromCharCode(65 + n);
     },
 
-    encode(d: Date) {
+    encode(d) {
       const y = d.getUTCFullYear();
-      const SCALER_N = (this as any)._SCALER_N;
+      const SCALER_N = this._SCALER_N;
 
       const msSinceYearStart = d.getTime() - Date.UTC(y, 0, 1, 0, 0, 0, 0);
       const totalScaledMsSinceYearStart = BigInt(msSinceYearStart) * SCALER_N;
@@ -51,8 +51,8 @@ const arcEndMsInYear = Number((currentArcStartScaledMs + arcSizeScaled) / SCALER
       
       const msOffsetInBeat = remainingScaledMs / SCALER_N;
 
-      const periodLetter = (this as any)._toBase26(Number(p_idx));
-      const barLetter    = (this as any)._toBase26(Number(b_idx));
+      const periodLetter = this._toBase26(Number(p_idx));
+      const barLetter    = this._toBase26(Number(b_idx));
 
       const canonicalMsPart = String(msOffsetInBeat).padStart(6, "0");
 
@@ -88,10 +88,10 @@ arcEndMsInYear,
       };
     },
 
-    decode(canon: string) {
+    decode(canon) {
       const m = canon.match(/^(\d{4})_([A-Z])(\d)([A-Z])(\d)_([0-9]{6})$/);
       if (!m) throw new Error(`Bad AlphaDec canonical string (format YYYY_PaBt_MMMMMM): "${canon}"`);
-      const SCALER_N = (this as any)._SCALER_N;
+      const SCALER_N = this._SCALER_N;
 
       const [, yyyyStr, pLtr, arcStr, barLtr, beatStr, msOffsetStr] = m;
 
@@ -130,27 +130,94 @@ arcEndMsInYear,
 const now = new Date();
 const result = clock.alphadec.encode(now);
 
+const arcStartDate = new Date(Date.UTC(result.year, 0, 1) + result.arcStartMsInYear);
 const arcEndDate = new Date(Date.UTC(result.year, 0, 1) + result.arcEndMsInYear);
+
+
+const alphadecStr = `${result.year}_${result.periodLetter}${result.arc}${result.barLetter}${result.beat}`;
 const arcEndStr = arcEndDate.toLocaleString("en-GB", {
-  day: "numeric", month: "short", year: "numeric",
+  day: "numeric", month: "short",
   hour: "numeric", minute: "2-digit", hour12: true, timeZone: "UTC"
-}).replace(",", "");
+}).replace(",", ",");
+
+const arcStartStr = arcStartDate.toLocaleString("en-GB", {
+  day: "numeric", month: "short", 
+  hour: "numeric", minute: "2-digit", hour12: true, timeZone: "UTC"
+}).replace(",", ",");
+
+
+const timeZones = {
+  "NYC": { locale: "en-US", timeZone: "America/New_York" },
+  "Abu Dhabi": { locale: "en-GB", timeZone: "Asia/Dubai" },
+  "Tokyo": { locale: "en-GB", timeZone: "Asia/Tokyo" }
+};
 
 const formatTime = (locale, options) =>
-  now.toLocaleString(locale, { hour: "numeric", minute: "2-digit", hour12: true, ...options });
+  now.toLocaleString(locale, {
+    hour: "numeric",
+    minute: "2-digit",
+    hour12: true,
+    ...options
+  });
 
-const timeLine = `- **UTC**: ${formatTime("en-GB", { timeZone: "UTC", day: "numeric", month: "short", year: "numeric" })} | ` +
-                 `**NYC**: ${formatTime("en-US", { timeZone: "America/New_York" })} | ` +
-                 `**Abu Dhabi**: ${formatTime("en-GB", { timeZone: "Asia/Dubai" })} | ` +
-                 `**Tokyo**: ${formatTime("en-GB", { timeZone: "Asia/Tokyo" })}`;
+const utcTimestamp = now.toLocaleString("en-GB", {
+  timeZone: "UTC",
+  day: "numeric", month: "short", year: "numeric",
+  hour: "numeric", minute: "2-digit", hour12: true
+});
+
+const timezones1 = {
+  "Mexico City": "America/Mexico_City",
+  "NYC": "America/New_York",
+  "Abu Dhabi": "Asia/Dubai"
+};
+
+const timezones2 = {
+  "Delhi": "Asia/Kolkata",
+  "Tokyo": "Asia/Tokyo",
+  "Sydney": "Australia/Sydney"
+};
+
+// Format GMT Timestamp
+const gmtTimestamp = now.toLocaleString("en-US", {
+  timeZone: "GMT",
+    weekday: "long",
+  day: "numeric", month: "short", year: "numeric",
+  hour: "numeric", minute: "2-digit", hour12: true
+});
+
+// Row 1: AlphaDec + Local Times
+const row1 = `| **\`${alphadecStr}\`** | ` +
+  Object.values(timezones1).map(tz =>
+    now.toLocaleString("en-US", {
+      weekday: "short",
+      hour: "numeric", minute: "2-digit", hour12: true, timeZone: tz
+    })
+  ).join(" | ") + " |";
+
+// Row 2: Arc Period + Labels
+const row2 = `| Arc ${result.periodLetter}${result.arc} | **${Object.keys(timezones2).join("** | **")}** |`;
+
+// Row 3: Arc Start/End + Local Times
+const row3 = `| Start: ${arcStartStr} <br /> Ends: ${arcEndStr} | ` +
+  Object.values(timezones2).map(tz =>
+    now.toLocaleString("en-US", {
+      weekday: "short",
+      hour: "numeric", minute: "2-digit", hour12: true, timeZone: tz
+    })
+  ).join(" | ") + " |";
 
 
-const snapshot = `
-Current snapshot (automatically updated; may be ~1 hour behind):
+  const snapshot = `
+Current snapshot (automatically updated; may be around 1 hour behind):
 
-${timeLine}
-- **AlphaDec**: ${result.year}_${result.periodLetter}${result.arc}
-  - Arc ${result.arc} ends: ${arcEndStr} UTC
+**GMT**: \`${gmtTimestamp}\`
+
+| AlphaDec | ${Object.keys(timezones1).join(" | ")} |
+|----------|${Object.keys(timezones1).map(() => '------------').join('|')}|
+${row1}
+${row2}
+${row3}
 `.trim();
 
 
@@ -158,5 +225,6 @@ const updated = content.replace(
   /<!-- snapshot:start -->[\s\S]*?<!-- snapshot:end -->/,
   `<!-- snapshot:start -->\n${snapshot}\n<!-- snapshot:end -->`
 );
+
 
 fs.writeFileSync(readmePath, updated);

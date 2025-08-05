@@ -1,0 +1,43 @@
+name: Update AlphaDec Snapshot Clock
+
+on:
+  schedule:
+    - cron: '0 * * * *'  # Every hour on the hour
+  workflow_dispatch:      # Allow manual triggering
+
+jobs:
+  update-snapshot:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout repo
+        # Fetches the code from your repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        # Prepares the environment for your Javascript file
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: Run update script
+        # This executes your script which modifies README.md
+        run: node assets/scripts/updateSnapshot.js
+
+      - name: Commit and push changes
+        run: |
+          # Configure git with the official bot user
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          # Add the modified file to the staging area
+          git add README.md
+          
+          # Create a new commit
+          git commit -m "Update clock in README"
+
+          # Push the changes back to the repository
+          git push

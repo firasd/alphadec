@@ -14,15 +14,17 @@ Example:
   - **UTC**: 2025-06-05T13:45:20.236Z
  
 <!-- snapshot:start -->
-Current snapshot (automatically updated; may be around 1 hour behind):
+Current time snapshot (automatically updated; may be around 1 hour behind):
 
-**GMT**: `Tuesday, Aug 5, 2025, 2:44 AM`
+**GMT**: `Tuesday, Aug 5, 2025, 3:22 AM`
 
-| AlphaDec | Mexico City | NYC | Abu Dhabi |
-|----------|------------|------------|------------|
-| **`2025_P3Y5`** | Mon 8:44 PM | Mon 10:44 PM | Tue 6:44 AM |
-| Arc P3 | **Delhi** | **Tokyo** | **Sydney** |
-| Start: 3 Aug, 6:55 pm <br /> Ends: 5 Aug, 4:36 am | Tue 8:14 AM | Tue 11:44 AM | Tue 12:44 PM |
+| AlphaDec | AlphaDec Arc | Arc Remaining Time |
+|----------|---------------|--------------------|
+| **`2025_P3Z0`** | P3 | 1.2 hrs|
+|  **Mexico City** |  **NYC** |  **Abu Dhabi** |
+| Mon 9:22 PM | Mon 11:22 PM | Tue 7:22 AM |
+| **Delhi** | **Tokyo** | **Sydney** |
+| Tue 8:52 AM | Tue 12:22 PM | Tue 1:22 PM |
 <!-- snapshot:end -->
 
 <p align="center">

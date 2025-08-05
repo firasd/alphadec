@@ -248,8 +248,9 @@ Notice the first two characters remain the same (`N1`) as both dates fall within
 
 ## Limitations
 
-- **Quantization Loss**: Round-trip conversion (UTC → AlphaDec → UTC) may drift by a few milliseconds due to misaligned temporal boundaries between the two time systems.
-- **Cross-Year Math**: Arithmetic operations spanning multiple years are not supported or intended.
+- **Quantization Loss**: Conversion (UTC → Alphadec or Alphadec → UTC) may drift by a few milliseconds. This is because of two reasons: Alphadec units are rational fractions of the year, and thus almost never aligned with ISO seconds; additionally, when encoding and decoding, we never round 'up' fractional values and instead truncate to the nearest completed unit of time.
+- **Cross-Year Math**: Arithmetic operations spanning multiple years are not supported or intended due to the units stretching on leap years.
+- **Distributed Local Events:** AlphaDec is not particularly applicable to global events that synchronize with local time of day. For example, iftar during Ramadan, Christmas midnight mass, or New Year's Eve celebrations are inherently tied to local time. AlphaDec is for marking singular moments, not distributed observances.
 
 ## AlphaDec is a Representation, Not a Replacement
 

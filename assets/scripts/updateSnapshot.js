@@ -133,38 +133,11 @@ const result = clock.alphadec.encode(now);
 const arcStartDate = new Date(Date.UTC(result.year, 0, 1) + result.arcStartMsInYear);
 const arcEndDate = new Date(Date.UTC(result.year, 0, 1) + result.arcEndMsInYear);
 
+// Compute remaining arc time in hours
+const arcRemainingMs = arcEndDate.getTime() - now.getTime();
+const arcRemainingHrs = (arcRemainingMs / (1000 * 60 * 60)).toFixed(1);
 
 const alphadecStr = `${result.year}_${result.periodLetter}${result.arc}${result.barLetter}${result.beat}`;
-const arcEndStr = arcEndDate.toLocaleString("en-GB", {
-  day: "numeric", month: "short",
-  hour: "numeric", minute: "2-digit", hour12: true, timeZone: "UTC"
-}).replace(",", ",");
-
-const arcStartStr = arcStartDate.toLocaleString("en-GB", {
-  day: "numeric", month: "short", 
-  hour: "numeric", minute: "2-digit", hour12: true, timeZone: "UTC"
-}).replace(",", ",");
-
-
-const timeZones = {
-  "NYC": { locale: "en-US", timeZone: "America/New_York" },
-  "Abu Dhabi": { locale: "en-GB", timeZone: "Asia/Dubai" },
-  "Tokyo": { locale: "en-GB", timeZone: "Asia/Tokyo" }
-};
-
-const formatTime = (locale, options) =>
-  now.toLocaleString(locale, {
-    hour: "numeric",
-    minute: "2-digit",
-    hour12: true,
-    ...options
-  });
-
-const utcTimestamp = now.toLocaleString("en-GB", {
-  timeZone: "UTC",
-  day: "numeric", month: "short", year: "numeric",
-  hour: "numeric", minute: "2-digit", hour12: true
-});
 
 const timezones1 = {
   "Mexico City": "America/Mexico_City",
@@ -178,53 +151,52 @@ const timezones2 = {
   "Sydney": "Australia/Sydney"
 };
 
-// Format GMT Timestamp
+// GMT Timestamp
 const gmtTimestamp = now.toLocaleString("en-US", {
   timeZone: "GMT",
-    weekday: "long",
+  weekday: "long",
   day: "numeric", month: "short", year: "numeric",
   hour: "numeric", minute: "2-digit", hour12: true
 });
 
-// Row 1: AlphaDec + Local Times
-const row1 = `| **\`${alphadecStr}\`** | ` +
-  Object.values(timezones1).map(tz =>
-    now.toLocaleString("en-US", {
-      weekday: "short",
-      hour: "numeric", minute: "2-digit", hour12: true, timeZone: tz
-    })
-  ).join(" | ") + " |";
+// Build table rows
+const row1 = `| **\`${alphadecStr}\`** | ${result.periodLetter}${result.arc} | ${arcRemainingHrs} hrs|`;
 
-// Row 2: Arc Period + Labels
-const row2 = `| Arc ${result.periodLetter}${result.arc} | **${Object.keys(timezones2).join("** | **")}** |`;
+const row2 = `|  **${Object.keys(timezones1).join("** |  **")}** |`;
+const row3 = `| ${Object.values(timezones1).map(tz =>
+  now.toLocaleString("en-US", {
+    weekday: "short",
+    hour: "numeric", minute: "2-digit", hour12: true, timeZone: tz
+  })
+).join(" | ")} |`;
 
-// Row 3: Arc Start/End + Local Times
-const row3 = `| Start: ${arcStartStr} <br /> Ends: ${arcEndStr} | ` +
-  Object.values(timezones2).map(tz =>
-    now.toLocaleString("en-US", {
-      weekday: "short",
-      hour: "numeric", minute: "2-digit", hour12: true, timeZone: tz
-    })
-  ).join(" | ") + " |";
+const row4 = `| **${Object.keys(timezones2).join("** | **")}** |`;
+const row5 = `| ${Object.values(timezones2).map(tz =>
+  now.toLocaleString("en-US", {
+    weekday: "short",
+    hour: "numeric", minute: "2-digit", hour12: true, timeZone: tz
+  })
+).join(" | ")} |`;
 
-
-  const snapshot = `
-Current snapshot (automatically updated; may be around 1 hour behind):
+// Final snapshot content
+const snapshot = `
+Current time snapshot (automatically updated; may be around 1 hour behind):
 
 **GMT**: \`${gmtTimestamp}\`
 
-| AlphaDec | ${Object.keys(timezones1).join(" | ")} |
-|----------|${Object.keys(timezones1).map(() => '------------').join('|')}|
+| AlphaDec | AlphaDec Arc | Arc Remaining Time |
+|----------|---------------|--------------------|
 ${row1}
 ${row2}
 ${row3}
+${row4}
+${row5}
 `.trim();
 
-
+// Replace the snapshot section in the README
 const updated = content.replace(
   /<!-- snapshot:start -->[\s\S]*?<!-- snapshot:end -->/,
   `<!-- snapshot:start -->\n${snapshot}\n<!-- snapshot:end -->`
 );
-
 
 fs.writeFileSync(readmePath, updated);

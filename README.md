@@ -14,7 +14,15 @@ Example:
   - **UTC**: 2025-06-05T13:45:20.236Z
  
 <!-- snapshot:start -->
-Placeholder text (will be replaced)
+Current snapshot (automatically updated; may be around 1 hour behind):
+
+**GMT**: `Tuesday, Aug 5, 2025, 1:21 AM`
+
+| AlphaDec | Mexico City | NYC | Abu Dhabi |
+|----------|------------|------------|------------|
+| **`2025_P3X4`** | Mon 7:21 PM | Mon 9:21 PM | Tue 5:21 AM |
+| Arc P3 | **Delhi** | **Tokyo** | **Sydney** |
+| Start: 3 Aug, 6:55 pm <br /> Ends: 5 Aug, 4:36 am | Tue 6:51 AM | Tue 10:21 AM | Tue 11:21 AM |
 <!-- snapshot:end -->
 
 <p align="center">

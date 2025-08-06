@@ -215,6 +215,10 @@ This flexibility allows you to create IDs that are both chronologically sortable
 * `2025_R173_154329_01.png` (An AlphaDec timestamp followed by a counter)
 * `sales_Y3.sql` (A category prefix followed by a truncated AlphaDec timestamp)
 
+### Alphadec Generation Efficiency
+
+Consumer laptops using Node.js can encode nearly 1 million UTC dates into Alphadec per second, i.e. roughly one timestamp per microsecond. This represents the lower bound of expected performance.
+
 ## Leap Years
 
 AlphaDec units stretch in leap years to accommodate the extra 24 hours. Since the year is always divided into exactly 26 periods regardless of length, each time unit becomes slightly longer in leap years than in common years.

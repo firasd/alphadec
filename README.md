@@ -215,21 +215,6 @@ This flexibility allows you to create IDs that are both chronologically sortable
 * `2025_R173_154329_01.png` (An AlphaDec timestamp followed by a counter)
 * `sales_Y3.sql` (A category prefix followed by a truncated AlphaDec timestamp)
 
-## Astronomical Alignment
-
-Although AlphaDec is a pure mathematical subdivision of the year, the Period unit exhibits alignment with the Earth's orbit.
-
-
-| Period | Event                 | Description                                                                                                                                                         |
-| ------ | --------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| A      | Perihelion        | Earth's closest approach to the Sun (Early January)                                |
-| F      | March Equinox     | Spring in the Northern Hemisphere and autumn in the Southern Hemisphere |
-| M      | June Solstice     | Summer in the Northern Hemisphere, winter in the Southern Hemisphere         |
-| N      | Aphelion          | Earth's farthest distance from the Sun (Early July)                     |
-| S      | September Equinox | Autumn in the Northern Hemisphere and spring in the Southern Hemisphere              |
-| Z      | December Solstice | Winter in the Northern Hemisphere, summer in the Southern Hemisphere                         |
-
-
 ## Leap Years
 
 AlphaDec units stretch in leap years to accommodate the extra 24 hours. Since the year is always divided into exactly 26 periods regardless of length, each time unit becomes slightly longer in leap years than in common years.
@@ -352,6 +337,26 @@ Compass bearings have the same properties&mdash;and indeed, Alphadec functions a
 We can contrast these properties by using **altitude as a foil**. Why would altitude not benefit from an Alphadec-like quantization? Because altitude is linear: there is a fixed zero and no "wrap-around." Additionally, altitude is absolute: when you are climbing from 5,000 ft to 10,000 ft, the starting point becomes irrelevant.
 
 A color wheel is another helpful contrast: although it is cyclical, points on the wheel are usually discussed independently. Referring to colors in a navigational or hierarchical manner is uncommon.
+
+### Time as Progression
+
+An ISO time like 4:30pm represents progress in sunrise and sunset. This is useful if you are laboring in a field: when sunlight fades, you are done for the day. However, in most contemporary contexts, the clock is a marker of events decoupled from the sun. "We have three hours to get ready and reach the wedding venue." Alphadec is literally a measure of such 'time elapsed' and 'time remaining'.
+
+The scale of Alphadec units (a ~34 hr arc and ~1hr20 min bar) can be used by a person to plan their day.
+
+## Astronomical Alignment
+
+Although AlphaDec is a pure mathematical subdivision of the year, the Period unit exhibits alignment with the Earth's orbit.
+
+
+| Period | Event                 | Description                                                                                                                                                         |
+| ------ | --------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| A      | Perihelion        | Earth's closest approach to the Sun (Early January)                                |
+| F      | March Equinox     | Spring in the Northern Hemisphere and autumn in the Southern Hemisphere |
+| M      | June Solstice     | Summer in the Northern Hemisphere, winter in the Southern Hemisphere         |
+| N      | Aphelion          | Earth's farthest distance from the Sun (Early July)                     |
+| S      | September Equinox | Autumn in the Northern Hemisphere and spring in the Southern Hemisphere              |
+| Z      | December Solstice | Winter in the Northern Hemisphere, summer in the Southern Hemisphere                         |
 
 # AlphaDec Year in UTC ISO time
 

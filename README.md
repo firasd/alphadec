@@ -1,4 +1,4 @@
-# AlphaDec
+# Alphadec: a Time ID system
 
 A timezone-agnostic, readable time format for humans, machines, and AI.
 
@@ -358,7 +358,7 @@ Although AlphaDec is a pure mathematical subdivision of the year, the Period uni
 | S      | September Equinox | Autumn in the Northern Hemisphere and spring in the Southern Hemisphere              |
 | Z      | December Solstice | Winter in the Northern Hemisphere, summer in the Southern Hemisphere                         |
 
-# AlphaDec Year in UTC ISO time
+## AlphaDec Year in UTC ISO time
 
 | AlphaDec | 2024 ISO (Leap Yr) | 2025 ISO | Drift |
 |----------|----------|----------|-------|

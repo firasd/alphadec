@@ -378,6 +378,30 @@ Although AlphaDec is a pure mathematical subdivision of the year, the Period uni
 | S      | September Equinox | Autumn in the Northern Hemisphere and spring in the Southern Hemisphere              |
 | Z      | December Solstice | Winter in the Northern Hemisphere, summer in the Southern Hemisphere                         |
 
+## ISO Alignment Points
+These 16 AlphaDec coordinates represent exact fractional positions in the year where the encoding aligns perfectly with millisecond boundaries (offset `_000000`). They occur at every 1/16th of the year (22.5° increments on the orbital circle).
+
+| % of Year | AlphaDec | 2025 UTC (Common) | 2024 UTC (Leap) |
+|-----------|----------|-------------------|-----------------|
+| 0% | `A0A0_000000` | Jan 1, 00:00 | Jan 1, 00:00 |
+| 6.25% | `B6G5_000000` | Jan 23, 19:30 | Jan 23, 21:00 |
+| 12.5% | `D2N0_000000` | Feb 15, 15:00 | Feb 15, 18:00 |
+| 18.75% | `E8T5_000000` | Mar 10, 10:30 | Mar 9, 15:00 |
+| 25% | `G5A0_000000` | Apr 2, 06:00 | Apr 1, 12:00 |
+| 31.25% | `I1G5_000000` | Apr 25, 01:30 | Apr 24, 09:00 |
+| 37.5% | `J7N0_000000` | May 17, 21:00 | May 17, 06:00 |
+| 43.75% | `L3T5_000000` | Jun 9, 16:30 | Jun 9, 03:00 |
+| 50% | `N0A0_000000` | Jul 2, 12:00 | Jul 2, 00:00 |
+| 56.25% | `O6G5_000000` | Jul 25, 07:30 | Jul 24, 21:00 |
+| 62.5% | `Q2N0_000000` | Aug 17, 03:00 | Aug 16, 18:00 |
+| 68.75% | `R8T5_000000` | Sep 8, 22:30 | Sep 8, 15:00 |
+| 75% | `T5A0_000000` | Oct 1, 18:00 | Oct 1, 12:00 |
+| 81.25% | `V1G5_000000` | Oct 24, 13:30 | Oct 24, 09:00 |
+| 87.5% | `W7N0_000000` | Nov 16, 09:00 | Nov 16, 06:00 |
+| 93.75% | `Y3T5_000000` | Dec 9, 04:30 | Dec 9, 03:00 |
+
+Note: While these points encode with perfect `_000000` offsets, they still decode with the standard -1ms precision loss due to systematic flooring in the decoder. These represent the rare moments where AlphaDec's rational fractions of the year align exactly with integer millisecond values.
+
 ## AlphaDec Year in UTC ISO time
 
 | AlphaDec | 2024 ISO (Leap Yr) | 2025 ISO | Drift |

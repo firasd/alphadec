@@ -366,7 +366,7 @@ The scale of Alphadec units (a ~34 hr arc and ~1hr20 min bar) can be used by a p
 
 ## Astronomical Alignment
 
-Although AlphaDec is a pure mathematical subdivision of the year, the Period unit exhibits alignment with the Earth's orbit.
+The Period unit exhibits alignment with the Earth's orbit.
 
 
 | Period | Event                 | Description                                                                                                                                                         |
@@ -379,7 +379,7 @@ Although AlphaDec is a pure mathematical subdivision of the year, the Period uni
 | Z      | December Solstice | Winter in the Northern Hemisphere, summer in the Southern Hemisphere                         |
 
 ## ISO Alignment Points
-These 16 AlphaDec coordinates represent exact fractional positions in the year where the encoding aligns perfectly with millisecond boundaries (offset `_000000`). They occur at every 1/16th of the year (22.5° increments on the orbital circle).
+These 16 AlphaDec coordinates represent exact fractional positions in the year where the encoding aligns perfectly with millisecond boundaries (offset `_000000`). They occur at every 1/16th of the year, at Alphadec unit intervals of 1 Period : 6 Arcs : 6 Bars : 5 Beats (22.5° increments on the orbital circle).
 
 | % of Year | AlphaDec | 2025 UTC (Common) | 2024 UTC (Leap) |
 |-----------|----------|-------------------|-----------------|

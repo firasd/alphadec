@@ -379,13 +379,11 @@ The Period unit exhibits alignment with the Earth's orbit.
 | Z      | December Solstice | Winter in the Northern Hemisphere, summer in the Southern Hemisphere                         |
 
 ## ISO Alignment Points
-These 16 AlphaDec coordinates represent exact fractional positions in the year where the encoding aligns perfectly with millisecond boundaries (offset `_000000`). They occur at every 1/16th of the year, at Alphadec unit intervals of 1 Period : 6 Arcs : 6 Bars : 5 Beats (22.5° increments on the orbital circle).
+These 16 AlphaDec coordinates represent exact fractional positions in the year where the encoding aligns perfectly with millisecond boundaries (offset `_000000`).
 
 The alignments are a result of the mathematical relationship between the total number of seconds in a common year (31,536,000) and the total number of AlphaDec beats (67,600). The Greatest Common Divisor (GCD) of these two numbers is 400.
 
-Any fraction 1/D, where D is a divisor of 400, will create a set of alignment points. This includes fractions like 1/100 (1% intervals), 1/20 (5% intervals), and even 1/400 (0.25% intervals), which yields a total of 400 perfect alignment points throughout the year.
-
-The 16-point table is presented as it provides a clean, geometrically intuitive view of the system's beautiful, hidden structure.
+Any fraction 1/D, where D is a divisor of 400, will create a set of alignment points. This includes fractions like 1/100 (1% intervals), 1/20 (5% intervals), and even 1/400 (0.25% intervals), which yields a total of 400 perfect alignment points throughout the year. These 16 points are a subset.
 
 | % of Year | AlphaDec | 2025 UTC (Common) | 2024 UTC (Leap) |
 |-----------|----------|-------------------|-----------------|

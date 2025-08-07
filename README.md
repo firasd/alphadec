@@ -215,6 +215,22 @@ This flexibility allows you to create IDs that are both chronologically sortable
 * `2025_R173_154329_01.png` (An AlphaDec timestamp followed by a counter)
 * `sales_Y3.sql` (A category prefix followed by a truncated AlphaDec timestamp)
 
+### Alphadec's glyph-like stamp
+
+Consider these filenames prefixed with ISO dates:
+
+- 2025-08-07-screenshot.png
+- 2025-10-22-crashlog.txt
+
+And now with Alphadec:
+
+- 2025_P5I6-screenshot.png
+- 2025_V0A0-crashlog.txt
+
+Both prefixes sort chronologically, but Alphadec achieves far higher resolution with fewer characters: setting aside underscores and hyphens, 8 chars in Alphadec mark an ~8 minute period of time compared to 24 hours in ISO.
+
+More significantly: the Alphadec prefixes are easier to skim past as a label, and less aesthetically harsh-looking. Admittedly this is a subjective point, but it's worth considering.
+
 ### Alphadec Generation Efficiency
 
 Consumer laptops using Node.js can encode nearly 1 million UTC dates into Alphadec per second, i.e. roughly one timestamp per microsecond. This represents the lower bound of expected performance.

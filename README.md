@@ -229,7 +229,23 @@ And now with Alphadec:
 
 Both prefixes sort chronologically, but Alphadec achieves far higher resolution with fewer characters: setting aside underscores and hyphens, 8 chars in Alphadec mark an ~8 minute period of time compared to 24 hours in ISO.
 
-More significantly: the Alphadec prefixes are easier to skim past as a label, and less aesthetically harsh-looking. Admittedly this is a subjective point, but it's worth considering.
+More significantly: the Alphadec prefixes are easier to skim past as a label, and less aesthetically harsh-looking. Admittedly this is a subjective point, but it's worthy of consideration.
+
+### Against the UUID
+
+A UUID is a collection of random characters like `f81d4fae-7dec-11d0-a765-00a0c91e6bf6`. 
+
+Now consider: what is the point of all this paranoid entropy? Is there any chance that a 7-Eleven receipt and NASA spectrograph will end up in the same S3 bucket?
+
+And even if so:
+ - How would you tell your objects apart? You'd still need a separate index to organize your jumble of UUIDs.
+ - Why would Snowflake IDs not suffice? Very few organizations are generating more varied objects at higher velocity than Twitter.
+
+To be fair, if you were a software component identifying yourself to Windows 3.1 in 1992, a 'GUID' made sense. But UUIDs were never meant to be database keys (where they cause index problems) or URLs (where they're ugly).
+
+Now here is a cosmic truth: Time _is_ entropy. Why ignore literal entropy to create a bag of your own?
+
+Alphadec, like Snowflake, KSUIDs, and ULIDs, embrace time as an inherent disambiguiator. However, an Alphadec prefix like 2025_P5U5_326662 is more easily interpretable than the others.
 
 ### Alphadec Generation Efficiency
 

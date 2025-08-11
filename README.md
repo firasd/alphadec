@@ -54,10 +54,10 @@ The AlphaDec string is composed of several parts:
 `YYYY_PaBt_MMMMMM`
 
 -   **YYYY**: The UTC year.
--   **P (Period)**: The year is divided into 26 periods, represented by letters `A` through `Z`. Each period is roughly 14 days long.
--   **a (Arc)**: Each period is divided into 10 arcs, numbered `0` through `9`. Each arc is roughly 33.7 hours long.
--   **B (Bar)**: Each arc is divided into 26 bars, `A` through `Z`. Each bar is roughly 77.8 minutes long.
--   **t (Beat)**: Each bar is divided into 10 beats, `0` through `9`. Each beat is roughly 7.8 minutes long.
+-   **Period**: The year is divided into 26 periods, represented by letters `A` through `Z`. Each period is roughly 14 days long.
+-   **Arc**: Each period is divided into 10 arcs, numbered `0` through `9`. Each arc is roughly 33.7 hours long.
+-   **Bar**: Each arc is divided into 26 bars, `A` through `Z`. Each bar is roughly 77.8 minutes long.
+-   **Beat**: Each bar is divided into 10 beats, `0` through `9`. Each beat is roughly 7.8 minutes long.
 -   **MMMMMM**: The number of milliseconds that have elapsed within the current beat.
     - In common years (365 days), the maximum integer ms offset is 466508. In leap years (366 days), the maximum integer ms offset is 467786.
 
@@ -279,7 +279,8 @@ Notice the first two characters remain the same (`N1`) as both dates fall within
 
 ## Limitations
 
-- **Quantization Loss**: Conversion (UTC → Alphadec or Alphadec → UTC) may drift by a few milliseconds. This is for two reasons: Alphadec units are rational fractions of the year, and thus almost never aligned with ISO seconds; additionally, when encoding and decoding, we never round 'up' fractional values and instead truncate to the nearest completed unit of time. (Note that in practice, an accumulated round-trip loss of ~3 ms is usually irrelevant; a default MySQL datetime has second-level precision, ie. 1000x more coarse than a millisecond.)
+- **Not aligned with ISO Date/Time**: Alphadec units are rational fractions of the year, and are thus almost never aligned with ISO dates. Do not use Alphadec to fill out tax forms.
+- **Quantization Loss**: Conversion (UTC → Alphadec or Alphadec → UTC) may drift by a few milliseconds. This is for two reasons: Alphadec units are almost never aligned with ISO seconds; additionally, when encoding and decoding, we never round 'up' fractional values and instead truncate to the nearest completed unit of time. (Note that in practice, an accumulated round-trip loss of ~3 ms is usually irrelevant; a default MySQL datetime has second-level precision, i.e. 1000x more coarse than a millisecond.)
 - **Cross-Year Math**: Arithmetic operations spanning multiple years are not supported or intended due to the units stretching on leap years.
 - **Distributed Local Events:** AlphaDec is not particularly applicable to global events that synchronize with local time of day. For example, iftar during Ramadan, Christmas midnight mass, or New Year's Eve celebrations are inherently tied to local time. AlphaDec is for marking singular moments, not distributed observances.
 

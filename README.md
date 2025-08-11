@@ -201,6 +201,8 @@ This structure enables:
 - Fast range queries with simple string matching
 - Index stability (no random insert churn like UUIDs)
 - Optional semantic suffixes without breaking order
+ 
+Because Alphadec stamps are strings, you can use them in more contexts than a standard timestamp&mdash;and unlike `2025-08-11`, the unit sizes on `2025_P8G2` don't jump from 1 day to a full month.
 
 ## AlphaDec as an ID Component
 

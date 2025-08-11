@@ -233,6 +233,14 @@ Both prefixes sort chronologically, but Alphadec achieves far higher resolution 
 
 More significantly: the Alphadec prefixes are easier to skim past as a label, and less aesthetically harsh-looking. Admittedly this is a subjective point, but it's worthy of consideration.
 
+### Time as Syntax
+
+Time is usually 'metadata': a file property, a database column. Alphadec, by virtue of being a string that can be used in filenames and AI conversations, turns time into document syntax, like a bullet point.
+
+Furthermore, Alphadec includes strong semantics because of the way it combines unit position and compression: it's like a Zip Code for time.
+
+These properties lead to time becoming a more prominent citizen of informational workflows.
+
 ### Against the UUID
 
 A UUID is a collection of random characters like `f81d4fae-7dec-11d0-a765-00a0c91e6bf6`. 

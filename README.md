@@ -49,16 +49,16 @@ This simple concept unlocks a host of powerful emergent properties.
 
 ## How It Works
 
-The AlphaDec string is composed of several parts:
+The canonical AlphaDec string is composed of several parts:
 
-`YYYY_PaBt_MMMMMM`
+`YYYY_PeriodArcBarBeat_MSOffset`
 
 -   **YYYY**: The UTC year.
 -   **Period**: The year is divided into 26 periods, represented by letters `A` through `Z`. Each period is roughly 14 days long.
 -   **Arc**: Each period is divided into 10 arcs, numbered `0` through `9`. Each arc is roughly 33.7 hours long.
 -   **Bar**: Each arc is divided into 26 bars, `A` through `Z`. Each bar is roughly 77.8 minutes long.
 -   **Beat**: Each bar is divided into 10 beats, `0` through `9`. Each beat is roughly 7.8 minutes long.
--   **MMMMMM**: The number of milliseconds that have elapsed within the current beat.
+-   **MsOffset**: The number of milliseconds that have elapsed within the current beat.
     - In common years (365 days), the maximum integer ms offset is 466508. In leap years (366 days), the maximum integer ms offset is 467786.
 
 ## Implementations

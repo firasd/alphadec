@@ -16,15 +16,15 @@ Example:
 <!-- snapshot:start -->
 Current time snapshot (automatically updated; may be around 1 hour behind):
 
-**GMT**: `Thursday, Sep 4, 2025, 7:09 PM`
+**GMT**: `Thursday, Sep 4, 2025, 8:13 PM`
 
 | AlphaDec | AlphaDec Arc | Arc Remaining Time |
 |----------|---------------|--------------------|
-| **`2025_R5U8`** | R5 | 6.7 hrs|
+| **`2025_R5V6`** | R5 | 5.6 hrs|
 |  **Mexico City** |  **NYC** |  **Abu Dhabi** |
-| Thu 1:09 PM | Thu 3:09 PM | Thu 11:09 PM |
+| Thu 2:13 PM | Thu 4:13 PM | Fri 12:13 AM |
 | **Delhi** | **Tokyo** | **Sydney** |
-| Fri 12:39 AM | Fri 4:09 AM | Fri 5:09 AM |
+| Fri 1:43 AM | Fri 5:13 AM | Fri 6:13 AM |
 <!-- snapshot:end -->
 
 <p align="center">

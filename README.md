@@ -59,7 +59,7 @@ The canonical AlphaDec string is composed of several parts:
 -   **Bar**: Each arc is divided into 26 bars, `A` through `Z`. Each bar is roughly 77.8 minutes long.
 -   **Beat**: Each bar is divided into 10 beats, `0` through `9`. Each beat is roughly 7.8 minutes long.
 -   **MsOffset**: The number of milliseconds that have elapsed within the current beat.
-    - In common years (365 days), the maximum integer ms offset is 466507. In leap years (366 days), the maximum integer ms offset is 467785.
+    - In common years (365 days), the maximum integer ms offset is 466508. In leap years (366 days), the maximum integer ms offset is 467786.
 
 ## Implementations
 

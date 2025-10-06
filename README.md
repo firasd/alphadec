@@ -13,7 +13,7 @@ Example:
 - **AlphaDec** (canonical format): `2025_L0V3_000000`
   - **UTC**: 2025-06-05T13:45:20.236Z
  
-<!-- snapshot:start -->
+<!-- snapshot:start
 Current time snapshot (automatically updated; may be around 1 hour behind):
 
 **GMT**: `Tuesday, Sep 16, 2025, 11:10 AM`

@@ -1,7 +1,7 @@
 # Against the UUID
 
-A UUID is a collection of random characters like `f81d4fae-7dec-11d0-a765-00a0c91e6bf6`
-
+A UUID is a 128-bit unique number, usually represented as a string of characters like f81d4fae-7dec-11d0-a765-00a0c91e6bf6
+    
 Consider: what is the point of all this paranoid entropy? Is there any chance that a 7-Eleven receipt and NASA spectrograph will end up in the same S3 bucket?
 
 And even if so:
@@ -10,7 +10,9 @@ And even if so:
 
 To be fair, if you were a software component identifying yourself to Windows 3.1 in 1992, a 'GUID' made sense. But UUIDs were never meant to be database keys (where they cause index problems) or URLs (where they're ugly).
 
-Now here is a cosmic truth: the arrow of Time is entropy by definition. Why ignore literal entropy to create a bag of your own?
+And this is before we get to AI, which adds further wrinkles. Anthropic says in their [tool design guide](https://www.anthropic.com/engineering/writing-tools-for-agents): "We’ve found that merely resolving arbitrary alphanumeric UUIDs to more semantically meaningful and interpretable language (or even a 0-indexed ID scheme) significantly improves Claude’s precision in retrieval tasks by reducing hallucinations."
+
+Now here is a cosmic truth: the arrow of Time is entropy by definition. Unless you specifically need entropy in a cryptographic sense, why ignore literal cosmic entropy to create a bag of your own?
 
 Alphadec, like Snowflake, KSUIDs, and ULIDs, embraces time as built-in disambiguation.
 

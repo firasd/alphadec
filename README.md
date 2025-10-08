@@ -179,6 +179,83 @@ function generate_alphadec(DateTime $datetime = null): string {
 ```
 </details>
 
+
+
+<details>
+<summary>Python Implementation</summary>
+
+```python
+import math
+from datetime import datetime, timezone
+
+class Clock:
+    class AlphaDec:
+        _SCALER = 1_000_000
+        
+        def _to_base_26(self, n):
+            if n < 0 or n > 25:
+                raise ValueError("Invalid index for Base26.")
+            return chr(65 + n)
+        
+        def encode(self, d):
+            y = d.year
+            SCALER = self._SCALER
+            
+            # Calculate milliseconds since year start
+            year_start = datetime(y, 1, 1, 0, 0, 0, 0, tzinfo=timezone.utc)
+            ms_since_year_start_float = int((d - year_start).total_seconds() * 1000)
+            total_scaled_ms_since_year_start = math.floor(ms_since_year_start_float * SCALER)
+            
+            # Check if leap year
+            is_leap = ((y % 4 == 0 and y % 100 != 0) or y % 400 == 0)
+            days_in_year = 366 if is_leap else 365
+            year_total_ms_float = days_in_year * 86_400_000
+            year_total_scaled_ms = math.floor(year_total_ms_float * SCALER)
+            
+            # Calculate period and subdivision sizes
+            period_size_scaled = math.floor(year_total_scaled_ms / 26)
+            arc_size_scaled = math.floor(period_size_scaled / 10)
+            bar_size_scaled = math.floor(arc_size_scaled / 26)
+            beat_size_scaled = math.floor(bar_size_scaled / 10)
+            
+            # Calculate time components
+            remaining_scaled_ms = total_scaled_ms_since_year_start
+            
+            p_idx = math.floor(remaining_scaled_ms / period_size_scaled)
+            remaining_scaled_ms -= p_idx * period_size_scaled
+            
+            a_val = math.floor(remaining_scaled_ms / arc_size_scaled)
+            remaining_scaled_ms -= a_val * arc_size_scaled
+            
+            b_idx = math.floor(remaining_scaled_ms / bar_size_scaled)
+            remaining_scaled_ms -= b_idx * bar_size_scaled
+            
+            t_val = math.floor(remaining_scaled_ms / beat_size_scaled)
+            remaining_scaled_ms -= t_val * beat_size_scaled
+            
+            ms_offset_in_beat = math.floor(remaining_scaled_ms / SCALER)
+            
+            # Format output
+            period_letter = self._to_base_26(p_idx)
+            bar_letter = self._to_base_26(b_idx)
+            canonical_ms_part = str(ms_offset_in_beat).zfill(6)
+            canonical = f"{y}_{period_letter}{a_val}{bar_letter}{t_val}_{canonical_ms_part}"
+            
+            return {"canonical": canonical}
+
+# Create the clock instance
+clock = Clock()
+clock.alphadec = Clock.AlphaDec()
+
+# Example usage:
+if __name__ == "__main__":
+    # Using current time
+    now = datetime.now(timezone.utc)
+    result = clock.alphadec.encode(now)
+    print(f"Current time: {result['canonical']}")
+```
+</details>
+
 ## Emergent Properties
 
 While AlphaDec was designed as a verbally chunked and compressed form of UTC, the mathematical structure leads to many emergent properties.

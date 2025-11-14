@@ -204,9 +204,15 @@ This structure enables:
  
 Because Alphadec stamps are strings, you can use them in more contexts than a standard timestamp&mdash;and unlike `2025-08-11`, the unit sizes on `2025_P8G2` don't jump from 1 day to a full month.
 
-## AlphaDec as an ID Component
+### Alphadec is Self-Documenting
 
-AlphaDec does not prescribe a rigid ID format. Instead, its time-based, sortable nature makes it an excellent component for building meaningful identifiers through composition.
+Because AlphaDec is an arithmetic conversion of UTC, the format can be reverse-engineered from just 2-3 sufficiently spaced AlphaDec ↔ UTC pairs, even in an archaeological scenario.
+
+No further external documentation or coordination is required.
+
+## Alphadec as an ID Component
+
+Alphadec does not prescribe a rigid ID format. Instead, its time-based, sortable nature makes it an excellent component for building meaningful identifiers through composition.
 
 You can use the full canonical string or truncate it to the desired precision. Combine it with prefixes or suffixes like dictionary words, counters, or random characters to suit your specific needs.
 

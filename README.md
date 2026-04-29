@@ -197,6 +197,14 @@ This structure enables:
  
 Because Alphadec stamps are strings, you can use them in more contexts than a standard timestamp&mdash;and unlike `2025-08-11`, the unit sizes on `2025_P8G2` don't jump from 1 day to a full month.
 
+#### The UTC vs. local ISO dilemma
+
+For machine storage, you're choosing between UTC ISO (`2025-04-29T12:00:00Z`) and local ISO with a timezone offset (`2025-04-29T17:30:00+05:30`). UTC ISO is string-sortable but loses the original timezone. Local ISO preserves the timezone but **breaks lexicographic sort** — RFC 3339 offsets like `+05:30`, `-07:00`, and `Z` don't sort correctly as strings because of their ASCII values.
+
+SQLite is a common environment where this bites: it has no native datetime type and sorts timestamp columns as strings. Storing timezone-aware timestamps in SQLite means either discarding the offset or accepting broken sort order. There's no clean solution on the ISO side.
+
+Alphadec is the tiebreaker for the machine side of this tradeoff. It's always UTC-derived (no timezone ambiguity), K-sortable by construction, and visually distinct enough that it's never confused for a local time.
+
 ### Alphadec is Self-Documenting
 
 Because AlphaDec is an arithmetic conversion of UTC, the format can be reverse-engineered from just 2-3 sufficiently spaced AlphaDec ↔ UTC pairs, even in an archaeological scenario.

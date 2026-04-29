@@ -64,7 +64,7 @@ The canonical AlphaDec string is composed of several parts:
 ## Implementation
 
 ```javascript
-export const alphadec = {
+const alphadec = {
 	_SCALER_N: 1_000_000n,
 
 	_toBase26(n) {
@@ -430,7 +430,7 @@ Any fraction 1/D, where D is a divisor of 400, will create a set of alignment po
 | 87.5% | `W7N0_000000` | Nov 16, 09:00 | Nov 16, 06:00 |
 | 93.75% | `Y3T5_000000` | Dec 9, 04:30 | Dec 9, 03:00 |
 
-Note: While these points encode with perfect `_000000` offsets, they still decode with the standard -1ms precision loss due to systematic flooring in the decoder. These represent the rare moments where AlphaDec's rational fractions of the year align exactly with integer millisecond values.
+These represent the moments where AlphaDec's rational fractions of the year align exactly with integer millisecond boundaries. At these points, encode and decode are perfectly lossless — a `_000000` canonical round-trips back to the exact UTC millisecond and re-encodes to the identical `_000000` string.
 
 ## AlphaDec Year in UTC ISO time
 

@@ -256,7 +256,7 @@ Now consider: what is the point of all this paranoid entropy? Is there any chanc
 
 And even if so:
  - How would you tell your objects apart? You'd still need a separate index to organize your jumble of UUIDs.
- - Why would Snowflake IDs not suffice? Very few organizations are generating more varied objects at higher velocity than Twitter.
+ - Why would Snowflake IDs not suffice? Very few organizations are generating more types of objects at higher velocity than Twitter.
 
 To be fair, if you were a software component identifying yourself to Windows 3.1 in 1992, a 'GUID' made sense. But UUIDs were never meant to be database keys (where they cause index problems) or URLs (where they're ugly).
 

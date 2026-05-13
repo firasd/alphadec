@@ -473,5 +473,90 @@ These represent the moments where AlphaDec's rational fractions of the year alig
 | `Y0A0` | `2024-12-03T20:18:27.692Z` | `2025-12-03T22:09:13.846Z` | **+1h 51m** |
 | `Z0A0` | `2024-12-17T22:09:13.846Z` | `2025-12-17T23:04:36.923Z` | **+55 min** |
 
+## Implementation Examples
+
+### Find nearest Alphadec-ISO alignment
+
+This code will output the nearest timestamps that provide clean round trips at exact millisecond precision between Alphadec and ISO.
+
+```
+// Requires Alphadec lib with encode and decode already loaded
+
+function isLeapYear(y){ return (y%4===0 && y%100!==0) || (y%400===0); }
+function alignedStepBeats(y){ return isLeapYear(y)?338:169; }
+
+function nearestIsoAlignedAlphaDec(date=new Date()){
+  const y = date.getUTCFullYear();
+  const isLeap = isLeapYear(y);
+  const days = isLeap?366:365;
+  const yearStartMs = Date.UTC(y,0,1);
+  const yearTotalMs = days*86400000;
+  const BEATS=67600, STEP=alignedStepBeats(y);
+
+  const msSince = date.getTime()-yearStartMs;
+  const beatIdx = Math.floor(msSince * BEATS / yearTotalMs);
+
+  const prevBeat = Math.floor(beatIdx / STEP) * STEP;
+  const nextBeat = prevBeat + STEP;
+
+  const beatToDate = k => new Date(yearStartMs + Math.floor(yearTotalMs*k/BEATS));
+
+  const prevDate = beatToDate(prevBeat);
+  const nextDate = nextBeat < BEATS ? beatToDate(nextBeat) : null;
+
+  const encNow = alphadec.encode(date);
+  const backNow = alphadec.decode(encNow.canonical);
+
+  return {
+    now: {
+      iso: date.toISOString(),
+      alphadec: encNow.canonical,
+      msOffsetInBeat: encNow.msOffsetInBeat,
+      roundTripIso: backNow.toISOString(),
+      roundTripDeltaMs: backNow.getTime() - date.getTime()  // should be <= 0 in effect? (truncation)
+    },
+    previousAligned: {
+      beatIndex: prevBeat,
+      iso: prevDate.toISOString(),
+      alphadec: alphadec.encode(prevDate).canonical,  // ends _000000
+      roundTripsExactly: alphadec.decode(alphadec.encode(prevDate).canonical).getTime() === prevDate.getTime()
+    },
+    nextAligned: nextDate && {
+      beatIndex: nextBeat,
+      iso: nextDate.toISOString(),
+      alphadec: alphadec.encode(nextDate).canonical,
+      roundTripsExactly: alphadec.decode(alphadec.encode(nextDate).canonical).getTime() === nextDate.getTime()
+    }
+  };
+}
+
+nearestIsoAlignedAlphaDec();
+```
+
+Sample output:
+```
+{
+    "now": {
+        "iso": "2026-05-13T00:24:05.960Z",
+        "alphadec": "2026_J4B0_103948",
+        "msOffsetInBeat": 103948,
+        "roundTripIso": "2026-05-13T00:24:05.959Z",
+        "roundTripDeltaMs": -1
+    },
+    "previousAligned": {
+        "beatIndex": 24336,
+        "iso": "2026-05-12T09:36:00.000Z",
+        "alphadec": "2026_J3P6_000000",
+        "roundTripsExactly": true
+    },
+    "nextAligned": {
+        "beatIndex": 24505,
+        "iso": "2026-05-13T07:30:00.000Z",
+        "alphadec": "2026_J4G5_000000",
+        "roundTripsExactly": true
+    }
+}
+```
+
 ---
 Designed by Firas Durri • [https://twitter.com/firasd](https://twitter.com/firasd) • [https://www.linkedin.com/in/firasd](https://www.linkedin.com/in/firasd)

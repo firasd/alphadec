@@ -415,36 +415,35 @@ The Period unit exhibits alignment with the Earth's orbit.
 | Z      | December Solstice | Winter in the Northern Hemisphere, summer in the Southern Hemisphere                         |
 
 ## ISO Alignment Points
-These 16 AlphaDec coordinates represent exact fractional positions in the year where the encoding aligns perfectly with millisecond boundaries (offset `_000000`).
 
-The alignments are a result of the mathematical relationship between the total number of seconds in a common year (31,536,000) and the total number of AlphaDec beats (67,600). The Greatest Common Divisor (GCD) of these two numbers is 400.
+Alphadec-ISO alignments are a result of the mathematical relationship between the total number of seconds in a year (31,536,000) and the total number of Alphadec beats (67,600). The Greatest Common Divisor (GCD) of these two numbers is 400, which yields a total of 400 perfect alignment points throughout the year. 
 
-Any fraction 1/D, where D is a divisor of 400, will create a set of alignment points. This includes fractions like 1/100 (1% intervals), 1/20 (5% intervals), and even 1/400 (0.25% intervals), which yields a total of 400 perfect alignment points throughout the year. These 16 points are a subset.
+- Common year example: **2026**
+- Leap year example: **2028**
 
-| % of Year | AlphaDec | 2025 UTC (Common) | 2024 UTC (Leap) |
-|-----------|----------|-------------------|-----------------|
-| 0% | `A0A0_000000` | Jan 1, 00:00 | Jan 1, 00:00 |
-| 6.25% | `B6G5_000000` | Jan 23, 19:30 | Jan 23, 21:00 |
-| 12.5% | `D2N0_000000` | Feb 15, 15:00 | Feb 15, 18:00 |
-| 18.75% | `E8T5_000000` | Mar 10, 10:30 | Mar 9, 15:00 |
-| 25% | `G5A0_000000` | Apr 2, 06:00 | Apr 1, 12:00 |
-| 31.25% | `I1G5_000000` | Apr 25, 01:30 | Apr 24, 09:00 |
-| 37.5% | `J7N0_000000` | May 17, 21:00 | May 17, 06:00 |
-| 43.75% | `L3T5_000000` | Jun 9, 16:30 | Jun 9, 03:00 |
-| 50% | `N0A0_000000` | Jul 2, 12:00 | Jul 2, 00:00 |
-| 56.25% | `O6G5_000000` | Jul 25, 07:30 | Jul 24, 21:00 |
-| 62.5% | `Q2N0_000000` | Aug 17, 03:00 | Aug 16, 18:00 |
-| 68.75% | `R8T5_000000` | Sep 8, 22:30 | Sep 8, 15:00 |
-| 75% | `T5A0_000000` | Oct 1, 18:00 | Oct 1, 12:00 |
-| 81.25% | `V1G5_000000` | Oct 24, 13:30 | Oct 24, 09:00 |
-| 87.5% | `W7N0_000000` | Nov 16, 09:00 | Nov 16, 06:00 |
-| 93.75% | `Y3T5_000000` | Dec 9, 04:30 | Dec 9, 03:00 |
+| % of year | Alphadec (2026) | ISO UTC (2026) – Common year | Alphadec (2028) | ISO UTC (2028) – Leap year |
+|---:|---|---|---|---|
+| 0% | `2026_A0A0_000000` | `2026-01-01T00:00:00.000Z` | `2028_A0A0_000000` | `2028-01-01T00:00:00.000Z` |
+| 0.25% | `2026_A0Q9_000000` | `2026-01-01T21:54:00.000Z` | `2028_A0Q9_000000` | `2028-01-01T21:57:36.000Z` |
+| 0.50% | `2026_A1H8_000000` | `2026-01-02T19:48:00.000Z` | `2028_A1H8_000000` | `2028-01-02T19:55:12.000Z` |
+|[&hellip;]|
+| 49.75% | `2026_M9J1_000000` | `2026-07-01T14:06:00.000Z` | `2028_M9J1_000000` | `2028-07-01T02:02:24.000Z` |
+| 50% | `2026_N0A0_000000` | `2026-07-02T12:00:00.000Z` | `2028_N0A0_000000` | `2028-07-02T00:00:00.000Z` |
+| 50.25% | `2026_N0Q9_000000` | `2026-07-03T09:54:00.000Z` | `2028_N0Q9_000000` | `2028-07-02T21:57:36.000Z` |
+|[&hellip;]|
+| 99.25% | `2026_Z8B3_000000` | `2026-12-29T06:18:00.000Z` | `2028_Z8B3_000000` | `2028-12-29T06:07:12.000Z` |
+| 99.50% | `2026_Z8S2_000000` | `2026-12-30T04:12:00.000Z` | `2028_Z8S2_000000` | `2028-12-30T04:04:48.000Z` |
+| 99.75% | `2026_Z9J1_000000` | `2026-12-31T02:06:00.000Z` | `2028_Z9J1_000000` | `2028-12-31T02:02:24.000Z` |
 
-These represent the moments where AlphaDec's rational fractions of the year align exactly with integer millisecond boundaries. At these points, encode and decode are perfectly lossless — a `_000000` canonical round-trips back to the exact UTC millisecond and re-encodes to the identical `_000000` string.
+These samples are excerpted from the [Full Alphadec-ISO alignment points table](docs/alphadec-iso-lossless-alignment.md).
+
+They represent the moments where Alphadec's rational fractions of the year align exactly with integer millisecond boundaries. At these points, encode and decode are perfectly lossless — a `_000000` canonical round-trips back to the exact UTC millisecond and re-encodes to the identical `_000000` string.
+
+These moments are also an exact decimal percentage of the year, so they represent the triple alignment of different measurement systems.
 
 ## AlphaDec Year in UTC ISO time
 
-| AlphaDec | 2024 ISO (Leap Yr) | 2025 ISO | Drift |
+| AlphaDec | 2024 ISO (Leap Yr) | 2025 ISO | Leap vs Common Drift |
 |----------|----------|----------|-------|
 | `A0A0` | `2024-01-01T00:00:00.000Z` | `2025-01-01T00:00:00.000Z` | **0 min** |
 | `B0A0` | `2024-01-15T01:50:46.153Z` | `2025-01-15T00:55:23.076Z` | **+55 min** |
@@ -459,7 +458,7 @@ These represent the moments where AlphaDec's rational fractions of the year alig
 | `K0A0` | `2024-05-20T18:27:41.538Z` | `2025-05-21T09:13:50.769Z` | **+9h 14m** |
 | `L0A0` | `2024-06-03T20:18:27.692Z` | `2025-06-04T10:09:13.846Z` | **+10h 9m** |
 | `M0A0` | `2024-06-17T22:09:13.846Z` | `2025-06-18T11:04:36.923Z` | **+11h 5m** |
-| `N0A0` | `2024-07-01T23:59:59.999Z` | `2025-07-02T12:00:00.000Z` | **+12h 0m** ⭐ |
+| `N0A0` | `2024-07-01T23:59:59.999Z` | `2025-07-02T12:00:00.000Z` | **+12h 0m** |
 | `O0A0` | `2024-07-16T01:50:46.153Z` | `2025-07-16T12:55:23.076Z` | **+11h 5m** |
 | `P0A0` | `2024-07-30T03:41:32.307Z` | `2025-07-30T13:50:46.153Z` | **+10h 9m** |
 | `Q0A0` | `2024-08-13T05:32:18.461Z` | `2025-08-13T14:46:09.230Z` | **+9h 14m** |

@@ -441,6 +441,10 @@ They represent the moments where Alphadec's rational fractions of the year align
 
 These moments are also an exact decimal percentage of the year, so they represent the triple alignment of different measurement systems.
 
+Any Alphadec timestamp that lies within these 400 beats round-trips losslessly because the millisecond offset has no quantization loss upon encoding.
+
+For example, ISO `2026-12-29T06:21:54.567Z` encodes to Alphadec `2026_Z8B3_234567` which decodes to `2026-12-29T06:21:54.567Z`.
+
 ## AlphaDec Year in UTC ISO time
 
 | AlphaDec | 2024 ISO (Leap Yr) | 2025 ISO | Leap vs Common Drift |

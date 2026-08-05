@@ -45,7 +45,7 @@ This simple concept unlocks a host of powerful emergent properties.
 -   **Time-Series Friendly**: Truncate the string for efficient time-range queries. `2024_M` finds everything in that ~14-day period.
 -   **Human-Readable & Compact**: Understand a timestamp's approximate place in the year at a glance.
 -   **LLM & AI-Native**: Its structured, tokenizable, continuous rhythm makes it a powerful primitive for giving AI a sense for how time is passing.
--   **Collision-free with ISO time**: AlphaDec avoids datetime-like formats, so you never confuse an AlphaDec timestamp for a local time (a past Alphadec is the same 'time ago' for everyone).
+-   **Distinct from ISO time**: AlphaDec avoids datetime-like formats, so you never confuse an AlphaDec timestamp for a local time (a past Alphadec is the same 'time ago' for everyone, regardless of location, timezone or daylight savings.).
 
 ## How It Works
 

@@ -244,9 +244,13 @@ More significantly: the Alphadec prefixes are easier to skim past as a label, an
 
 Time is usually 'metadata': a file property, a database column. Alphadec, by virtue of being a string that can be used in filenames and AI conversations, turns time into document syntax, like a bullet point.
 
-Furthermore, Alphadec includes strong semantics because of the way it combines unit position and compression: it's like a Zip Code for time.
+Furthermore, Alphadec includes strong semantics because of the way it combines unit position and compression: it's like a ZIP Code for time.
 
 These properties lead to time becoming a more prominent citizen of informational workflows.
+
+Note that using time as paratext is common in some contexts: eg. Wikipedia uses the release year to distinguish &lsquo;The_Mummy_(1999_film)&rsquo; from &lsquo;The_Mummy_(2017_film)&rsquo;. Furthermore, in certain documents, time is inherently part of the content, e.g. &lsquo;FY 2026 Budget&rsquo;.
+
+Semantic character position is also a convention used beyond Alphadec or ZIP codes: for example, in hotels, Room 213 is usually on the second floor.
 
 ### Against the UUID
 
@@ -289,7 +293,7 @@ Notice the first two characters remain the same (`N1`) as both dates fall within
 ## Limitations
 
 - **Not aligned with ISO Date/Time**: Alphadec units are rational fractions of the year, and are thus almost never aligned with ISO dates. Do not use Alphadec to fill out tax forms.
-- **Quantization Loss**: Conversion (UTC → Alphadec or Alphadec → UTC) may drift by a few milliseconds. This is for two reasons: Alphadec units are almost never aligned with ISO seconds; additionally, when encoding and decoding, we never round 'up' fractional values and instead truncate to the nearest completed unit of time. (Note that in practice, an accumulated round-trip loss of ~3 ms is usually irrelevant; a default MySQL datetime has second-level precision, i.e. 1000x more coarse than a millisecond.)
+- **Quantization Loss**: The encoding step (UTC → Alphadec) loses precision. Because Alphadec units are almost never aligned with ISO seconds, and because the encoder truncates to the nearest completed unit rather than rounding up, encoding typically loses ~1 ms. Decoding (Alphadec → UTC) is exact. As a result, a round-trip (UTC → AlphaDec → UTC) will usually be off by 1 ms.  (Note that in practice, 1 ms of round-trip loss is negligible; a default MySQL datetime has second-level precision, i.e. 1000x more coarse than a millisecond.)
 - **Cross-Year Math**: Arithmetic operations spanning multiple years are not supported or intended due to the units stretching on leap years.
 - **Distributed Local Events:** AlphaDec is not particularly applicable to global events that synchronize with local time of day. For example, iftar during Ramadan, Christmas midnight mass, or New Year's Eve celebrations are inherently tied to local time. AlphaDec is for marking singular moments, not distributed observances.
 

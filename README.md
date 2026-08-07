@@ -240,15 +240,15 @@ Both prefixes sort chronologically, but Alphadec achieves far higher resolution 
 
 More significantly: the Alphadec prefixes are easier to skim past as a label, and less aesthetically harsh-looking. Admittedly this is a subjective point, but it's worthy of consideration.
 
-### Time as Syntax
+### Time as Label
 
-Time is usually 'metadata': a file property, a database column. Alphadec, by virtue of being a string that can be used in filenames and AI conversations, turns time into document syntax, like a bullet point.
+Time is usually 'metadata': a file property, a database column. Alphadec, by virtue of being a string that can be used in filenames and AI conversations, turns time into a label.
 
-Furthermore, Alphadec includes strong semantics because of the way it combines unit position and compression: it's like a ZIP Code for time.
+Alphadec is semantic because of the way its hierarchical syntax uses the mixed-radix unit position to denote ranges of values: it's like a ZIP Code for time.
 
 These properties lead to time becoming a more prominent citizen of informational workflows.
 
-Note that using time as paratext is common in some contexts: eg. Wikipedia uses the release year to distinguish &lsquo;The_Mummy_(1999_film)&rsquo; from &lsquo;The_Mummy_(2017_film)&rsquo;. Furthermore, in certain documents, time is inherently part of the content, e.g. &lsquo;FY 2026 Budget&rsquo;.
+Note that using time in titles or other paratext is common in some contexts: eg. Wikipedia uses the release year to distinguish &lsquo;The_Mummy_(1999_film)&rsquo; from &lsquo;The_Mummy_(2017_film)&rsquo;. Furthermore, in certain documents, time is inherently part of the content, e.g. &lsquo;FY 2026 Budget&rsquo;.
 
 Semantic character position is also a convention used beyond Alphadec or ZIP codes: for example, in hotels, Room 213 is usually on the second floor.
 

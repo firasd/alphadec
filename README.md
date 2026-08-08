@@ -324,18 +324,23 @@ AlphaDec sits *beside* your datetime — not in place of it.
 
 ## 🔍 Comparisons
 
-Here’s how AlphaDec compares to other systems:
+Here’s how Alphadec compares to other systems:
 
 ### 🕒 Swatch Internet Time
 - Divides the day into 1000 “.beats” (`@000` to `@999`), anchored to UTC+1.
 - Intended to be universal, but **doesn't encode the date** — `@000` repeats every day.
-- `@000` in Tokyo might be a different date than in NYC.
+- `@000` in Tokyo is a different date than in NYC.
 
 ✅ Global  
 ❌ Ambiguous  
 ❌ Not hierarchical  
 ❌ Not useful for indexing or filenames
 
+Swatch Time seems to have been conceived assuming the 'internet' implies real-time coordination: for [example](https://www.swatch.com/en-in/internet-time.html), 'if a New York web-supporter makes a date for a chat with a cyber friend in Rome, they can simply agree to meet at an "@ time"'.
+
+The need for extra coordination to resolve a .beat's calendar date&mdash;which may split across days of week based on user location&mdash;adds friction when the moment being denoted is not just Shania Twain showing up in MSN Chat within a few hours. Most internet communication ended up asynchronous; people are commenting on Youtube videos today that were posted decades ago.
+
+Another questionable characteristic is Swatch coining 'BMT' (Biel Meantime) as a way to refer to Central European Wintertime.
 
 ### 📡 Maidenhead Locator System
 - Used in ham radio to encode **spatial** positions in a compact grid (e.g., `FN31pr`).
